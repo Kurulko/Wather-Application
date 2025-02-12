@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Weather";
+}
+
+@model WeatherModel
+
+@if (ViewBag.Error != null)
+{
+    <p class="alert alert-danger">@ViewBag.Error</p>
+}
+else
+{
+    <h2>Weather Forecast for @Model.City</h2>
+    <br />
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Temperature:</th>
+                <td>@Model.Temperature.Value @Model.Temperature.Unit</td>
+            </tr>
+            <tr>
+                <th>Min Temperature:</th>
+                <td>@Model.MinTemperature.Value @Model.MinTemperature.Unit</td>
+            </tr>
+            <tr>
+                <th>Max Temperature:</th>
+                <td>@Model.MaxTemperature.Value @Model.MaxTemperature.Unit</td>
+            </tr>
+            <tr>
+                <th>Precipitation:</th>
+                <td>@Model.Precipitation.Value @Model.Precipitation.Unit</td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    @if (ViewBag.Warning != null)
+    {
+        <p class="alert alert-warning">@ViewBag.Warning</p>
+    }
+}
+
+<form method="get">
+    <label for="city" class="form-label">Enter City:</label>
+    <input type="text" name="city" class="form-control" required />
+    <br />
+    <button type="submit" class="btn btn-outline-primary">Get Forecast</button>
+</form>
